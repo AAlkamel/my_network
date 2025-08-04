@@ -9,7 +9,7 @@
 <body>
     <x-header  :menu="[
         ['name' => 'Home', 'href' => '/'],
-        ['name' => 'Friends', 'href' => '/friends'],
+        ['name' => 'Friends', 'href' => route('friends.index')],
 
     ]"/>
     <main  class="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">

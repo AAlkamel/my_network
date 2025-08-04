@@ -3,7 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-
+use App\Models\Group;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Friend>
  */
@@ -21,6 +21,7 @@ class FriendFactory extends Factory
             'age' => fake()->numberBetween(18, 65),
             'bio' => fake()->realText(500),
             'skill' => fake()->numberBetween(1, 100),
+            'group_id' => Group::inRandomOrder()->first()->id,
         ];
     }
 }

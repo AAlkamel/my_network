@@ -33,3 +33,12 @@
         @apply text-green-600 hover:text-green-800;
     }
 
+.pagination {
+    @apply flex items-center justify-center px-4 py-3 sm:px-6 gap-1;
+}
+.pagination a {
+    @apply text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md px-4 py-2 shadow-xs hover:shadow-md transition duration-200 ease-out;
+}
+.pagination .active, .pagination .disabled {
+    @apply text-sm font-medium text-gray-700 bg-white/15 border border-gray-300 rounded-md px-4 py-2 shadow-xs;
+}
