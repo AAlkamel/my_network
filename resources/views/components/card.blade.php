@@ -4,7 +4,7 @@
     <div class="sm:flex sm:justify-between sm:gap-4 lg:gap-6">
         <div class="sm:order-last sm:shrink-0">
             <img alt=""
-                src="https://picsum.photos/200/300?random={{ $id }}"
+                src="https://picsum.photos/100/100?random={{ $id }}"
                 class="size-16 rounded-full object-cover sm:size-[72px]" />
         </div>
 

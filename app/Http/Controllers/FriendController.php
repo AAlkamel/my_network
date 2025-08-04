@@ -14,9 +14,9 @@ class FriendController extends Controller
         return View('friends.index', ['friends' => $friends]);
     }
 
-    public function show($id)
+    public function show(Friend $friend)
     {
-        $friend = Friend::with('group')->findOrFail($id);
+        $friend->load('group');
 
         return View('friends.show', ['friend' => $friend]);
     }
@@ -28,21 +28,46 @@ class FriendController extends Controller
 
     public function store(Request $request)
     {
-        // Save a new friend
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'age' => 'required|integer|min:18|max:100',
+            'bio' => 'nullable|string|min:10|max:500',
+            'skill' => 'required|integer|min:0|max:100',
+            'group_id' => 'required|exists:groups,id',
+        ]);
+
+        Friend::create($validatedData);
+
+        return redirect('/friends')->with('success', 'Friend added successfully!');
     }
 
-    public function edit($id)
+    public function edit(Friend $friend)
     {
-        // Show the form to edit a friend
+        return View('friends.edit', [
+            'friend' => $friend,
+            'groups' => \App\Models\Group::all()
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, Friend $friend)
     {
-        // Update a friend's information
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'age' => 'required|integer|min:18|max:100',
+            'bio' => 'nullable|string|min:10|max:500',
+            'skill' => 'required|integer|min:0|max:100',
+            'group_id' => 'required|exists:groups,id',
+        ]);
+
+        $friend->update($validatedData);
+
+        return redirect('/friends')->with('success', 'Friend updated successfully!');
     }
 
-    public function destroy($id)
+    public function destroy(Friend $friend)
     {
-        // Delete a friend
+        $friend->delete();
+
+        return redirect('/friends')->with('success','"' . $friend->name . '" Friend deleted successfully!');
     }
 }

@@ -9,6 +9,13 @@
             <button onclick="location.href='{{ route('friends.edit', $friend['id']) }}'" type="button"
                 class="inline-block rounded-sm border border-blue-600 bg-blue-600/5 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-transparent hover:text-blue-600 focus:ring-3 focus:outline-hidden">Edit
                 Friend</button>
+            <form action="{{ route('friends.destroy', $friend) }}" method="POST" class="inline-block">
+                @csrf
+                @method('DELETE')
+                <button type="submit"
+                    class="ms-2 inline-block rounded-sm border border-red-600 bg-red-600/5 px-4 py-2 text-sm font-medium text-red-600 hover:bg-transparent hover:text-red-600 focus:ring-3 focus:outline-hidden">Delete
+                    Friend</button>
+            </form>
         </div>
         <div class="grid lg:grid-cols-7 lg:gap-x-8 xl:gap-x-12 lg:items-center mb-16">
             <div class="lg:col-span-2 mt-10 lg:mt-0">
@@ -49,7 +56,7 @@
 
             </div>
         </div>
-        <!-- End Grid -->
+
     </div>
 
 </x-layout>
